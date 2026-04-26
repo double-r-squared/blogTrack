@@ -1,0 +1,39 @@
+You are writing a new dev-log blog post in the {{SERIES}} series for the
+blog at {{SITE_REPO}}.
+
+Read these first:
+- {{SITE_REPO}}/AGENTS.md (the writing voice for methodology / process
+  posts; this post is project-specific so you can name internals freely,
+  but the don'ts and the em-dash rule still apply)
+- {{SITE_REPO}}/src/blog/content/nutshell-devlog-1.md (style reference;
+  the new post should feel like part of the same series, a reverse-
+  chronological human-readable summary of architectural shifts, not a
+  diff dump)
+{{STYLE_REFERENCE}}
+
+Then write a new blog post at
+{{SITE_REPO}}/src/blog/content/{{SLUG}}.md describing the timeline
+content provided below. Group related changes, highlight architectural
+shifts, skip the line-level minutiae. Keep it human; this isn't a
+changelog.
+
+Frontmatter / metadata:
+- File: {{SITE_REPO}}/src/blog/content/{{SLUG}}.md
+- Title heading (line 1): # {{TITLE}}
+- Tags line: *Tags: {{TAGS}}*
+- Date for posts.ts: {{TODAY}}
+- Slug for posts.ts: {{SLUG}}
+
+After writing the markdown file:
+1. Add the import + Post entry in {{SITE_REPO}}/src/blog/posts.ts at the
+   TOP of the posts array (most recent first). Match the existing style
+   of imports + entries.
+2. Bump the patch version in {{SITE_REPO}}/package.json.
+3. From {{SITE_REPO}}, run: npx tsc --noEmit && npx vite build. Both
+   must succeed.
+4. git add -A; git commit with a one-line title summarizing the post;
+   git push.
+
+If the new content is too thin to make a coherent post, exit without
+committing anything and surface the reason on stdout. The cron will
+retry on the next run after more content has accumulated.

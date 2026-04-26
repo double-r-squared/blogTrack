@@ -1,0 +1,57 @@
+{
+  "name": "track4blog",
+  "displayName": "track4blog",
+  "description": "Right-click toggle for the blogTrack devlog cron's watch list. Adds or removes the selected file from the cron, which periodically diffs watched markdown files and triggers Claude to write a new blog post when changes accumulate.",
+  "version": "0.1.0",
+  "publisher": "nate-local",
+  "private": true,
+  "engines": { "vscode": "^1.80.0" },
+  "main": "./extension.js",
+  "categories": ["Other"],
+  "activationEvents": [],
+  "contributes": {
+    "commands": [
+      {
+        "command": "track4blog.toggle",
+        "title": "track4blog: Toggle Tracking",
+        "category": "track4blog"
+      },
+      {
+        "command": "track4blog.setDestination",
+        "title": "track4blog: Set Destination",
+        "category": "track4blog"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "track4blog.toggle",
+          "when": "!explorerResourceIsFolder",
+          "group": "7_modification@99"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "command": "track4blog.toggle",
+          "group": "1_modification@99"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "track4blog.toggle",
+          "group": "9_cutcopypaste@99"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "track4blog",
+      "properties": {
+        "track4blog.scriptPath": {
+          "type": "string",
+          "default": "",
+          "description": "Absolute path to scripts/track4blog.sh inside the blogTrack repo. Empty = fall back to ~/blogTrack/scripts/track4blog.sh."
+        }
+      }
+    }
+  }
+}

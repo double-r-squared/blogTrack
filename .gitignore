@@ -1,0 +1,6 @@
+# Cron snapshots + log
+.devlog-state/
+
+# OS / editor cruft
+.DS_Store
+*.log
