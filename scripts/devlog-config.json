@@ -1,4 +1,27 @@
 {
-  "site_repo": "/Users/NateAlmanza2022/MY-SITE",
-  "watches": []
+  "site_repo": "/Users/NateAlmanza2022/MY-SITE/src/blog/content",
+  "watches": [
+    {
+      "path": "/Users/NateAlmanza2022/even-build-jam/timeline.md",
+      "series": "even build jam development log",
+      "slug_prefix": "even-build-jam-devlog",
+      "title_prefix": "even build jam development log",
+      "threshold_chars": 800,
+      "tags": [
+        "devlog",
+        "even-build-jam"
+      ]
+    },
+    {
+      "path": "/Users/NateAlmanza2022/MY-SITE/timeline.md",
+      "series": "MY SITE development log",
+      "slug_prefix": "my-site-devlog",
+      "title_prefix": "MY SITE development log",
+      "threshold_chars": 800,
+      "tags": [
+        "devlog",
+        "my-site"
+      ]
+    }
+  ]
 }

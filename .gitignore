@@ -4,3 +4,7 @@
 # OS / editor cruft
 .DS_Store
 *.log
+# Nutshell — local server state and API key
+.nutshell-api-key
+.nutshell-server.pid
+.nutshell-server.log

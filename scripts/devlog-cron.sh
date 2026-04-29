@@ -90,12 +90,12 @@ jq -c '.watches[]' "$CONFIG" | while read -r entry; do
     continue
   fi
 
-  # Compute the additions (lines new in current vs snapshot).
-  ADDED=$(diff \
-            --new-line-format='%L' \
-            --old-line-format='' \
-            --unchanged-line-format='' \
-            "$SNAPSHOT" "$WATCHED" 2>/dev/null || true)
+  # Compute the additions (lines new in current vs snapshot). The
+  # `--new-line-format` / `--old-line-format` flags are GNU-only and
+  # silently fail on BSD diff (macOS default), so use the portable
+  # form: BSD + GNU diff both prefix added lines with "> " in the
+  # default normal output. Strip the prefix with sed.
+  ADDED=$(diff "$SNAPSHOT" "$WATCHED" 2>/dev/null | sed -n 's/^> //p' || true)
   ADDED_LEN=${#ADDED}
 
   log "$WATCHED: ${ADDED_LEN} new chars (threshold $THRESHOLD)"
